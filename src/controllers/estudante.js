@@ -8,6 +8,7 @@ const show = id => db.find(el => el.id == id)
 
 const store = (body) => {
     const novo = model(body)
+    console.log(db)
 
     if (novo) {
         db.push(novo)
@@ -33,7 +34,9 @@ const destroy = id => {
     const indice = db.findIndex(el => el.id == id)
     if (indice != -1) {
         db.splice(indice, 1)
+        return 200;
     }
+    return 400
 }
 
 module.exports = {

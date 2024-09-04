@@ -1,28 +1,45 @@
-const express = require ("express")
+const express = require("express")
 const livro_controller = require("../controllers/livro.js")
-const router = express.Router()
+const router = express.Router();
 
-router.get("/", (req,res) => {
+router.get("/", (req, res) => {
     res.json(livro_controller.index())
 })
 
-router.get("/:id",(req,res)=> {
-    res.json(livro_controller.show(res.params.id))
+router.get("/:id", (req, res) => {
+    const livro = livro_controller.show(req.params.id);
+    if (livro) {
+        res.status(200).json(livro);
+    } else {
+        res.status(404).send("Livro não encontrado")
+    }
 })
 
-router.post ("/",(req,res) => {
+router.post("/", (req, res) => {
     const code = livro_controller.store(req.body)
-    res.status(code).json()
+    if (code === 201) {
+        res.status(201).send("Livro registrado com sucesso")
+    } else {
+        res.status(400).send("Erro ao registrar o livro")
+    }
 })
 
-router.put("/:id",(req,res)=> {
-    const code = livro_controller.update(res.body, req.params.id)
-    res.status(code).json
+router.put("/:id", (req, res) => {
+    const code = livro_controller.update(req.body, req.params.id)
+    if (code === 200) {
+        res.status(200).send("Livro atualizado com sucesso")
+    } else {
+        res.status(400).send("Erro ao atualizar o livro")
+    }
+});
+
+router.delete('/:id', (req, res) => {
+    const code = livro_controller.destroy(req.params.id)
+    if (code === 200) {
+        res.status(200).send("Livro deletado com sucesso")
+    } else {
+        res.status(400).send("Erro ao deletar o livro")
+    }
 })
 
-router.delete("/:id", (req, res) => {
-    livro_controller.destroy(req.params.id)
-    res.json()
-})
-
-module.exports = router
+module.exports = router;
