@@ -1,0 +1,67 @@
+Livro
+post http://localhost:5000/livro
+{
+"titulo": "3",
+"autor": "123",
+"ano" : 1290,
+"genero" : "Ficção Cientifica"
+}
+
+get http://localhost:5000/livro
+
+put http://localhost:5000/livro/2
+{
+  "titulo": "3 porquinho",
+  "autor": "123",
+  "ano": 1290,
+  "genero": "Ficção Cientifica"
+}
+
+delete http://localhost:5000/livro/1
+
+Estudante
+
+post http://localhost:5000/estudante
+{
+    "nome": "lari",
+    "matricula" : 123,
+    "curso" : "lions",
+    "ano": 1
+}
+
+get http://localhost:5000/estudante
+
+put http://localhost:5000/estudante/1
+{
+    "nome": "João Silva",
+    "matricula": "12345",
+    "curso": "Engenharia",
+    "ano": "2023"
+}
+
+delete http://localhost:5000/estudante/1
+
+Aluguel
+
+post http://localhost:5000/aluguel
+{
+  "idLivro": 1,
+  "idEstudante": 1,
+  "dataAluguel": "2024-09-01",
+  "dataDevolucao": "2024-09-10"
+}
+
+get http://localhost:5000/aluguel
+
+put http://localhost:5000/aluguel/1
+{
+  "idLivro": 1,
+  "idEstudante": 2,
+  "dataAluguel": "2024-09-01",
+  "dataDevolucao": "2024-09-10"
+}
+
+delete http://localhost:5000/aluguel/1
+
+
+

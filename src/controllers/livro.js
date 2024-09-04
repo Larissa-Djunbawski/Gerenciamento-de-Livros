@@ -1,10 +1,10 @@
-const model = require("../models/livro.js");
+const model = require("../models/livro.js")
 const db = []
 
 const index = () => db
 
 
-const show = (id) => db.find(el => el.id == id)
+const show = id => db.find(el => el.id == id)
 
 
 const store = (body) => {
@@ -19,7 +19,7 @@ const store = (body) => {
 
 const update = (body, id) => {
     const novo = model(body, parseInt(id))
-    const indice = db.findIndex(el => el.id == id);
+    const indice = db.findIndex(el => el.id == id)
 
     if (novo && indice != -1) {
         db[indice] = novo
@@ -29,7 +29,7 @@ const update = (body, id) => {
 };
 
 
-const destroy = (id) => {
+const destroy = id => {
     const indice = db.findIndex(el => el.id == id)
     if (indice != -1) {
         db.splice(indice, 1)
@@ -45,3 +45,4 @@ module.exports = {
     update,
     destroy
 }
+
